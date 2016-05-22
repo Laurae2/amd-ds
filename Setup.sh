@@ -151,6 +151,9 @@ cd $CAFFE_ROOT
 ./data/cifar10/get_cifar10.sh
 ./examples/cifar10/create_cifar10.sh
 ./examples/cifar10/train_quick.sh
+
+#if you get segmentation fault (core dumped) it means you used the wrong GPU (it's OK if you know you used the wrong one)
+#if you get nothing or an error with nothing else (other than "to-Python" error), you did NOT install the python bindings for Caffe!!!
 python python/classify.py --print_results examples/images/cat.jpg foo
 
 #install Anaconda 2.7 yourself
