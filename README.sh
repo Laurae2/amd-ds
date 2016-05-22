@@ -166,11 +166,12 @@ python setup.py install
 #check if all good in Anaconda: use spyder, go to iPython Console to write the imports 1 by 1
 #you might get boost warning/error messages, ignore them it's normal
 spyder
+import numpy as np
 import caffe
 import xgboost
 caffe.set_device(0) #this should throw an error if you are not on the AMD GPU
 caffe.set_device(1) #same as previously
-bst = xgb.cv({'bst:max_depth':2, 'bst:eta':1, 'silent':1, 'objective':'binary:logistic'}, dtrain, 10, verbose_eval=1, nfold=2) #if you get an error here, you screwed up somewhere
+bst = xgboost.cv({'bst:max_depth':2, 'bst:eta':1, 'silent':1, 'objective':'binary:logistic'}, dtrain, 10, verbose_eval=1, nfold=2) #if you get an error here, you screwed up somewhere
 
 #by the end your ~/.bashrc MUST look like this:
 export LD_LIBRARY_PATH="/usr/local/lib64/:$LD_LIBRARY_PATH"
