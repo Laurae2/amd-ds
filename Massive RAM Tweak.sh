@@ -2,7 +2,7 @@
 #Allows to get more RAM than you'd ever try to get manually (especially if you reached your motherboard RAM limit)
 #16GB RAM + 32GB swap using these tweaks can make 28GB RAM + 64GB swap while improving I/O
 #Drawback: your CPU "might" be hogged even harder during heavy computation
-#Don't even try using GPU as VRAM, not worth at all the issues you will have (xgboost freeze, etc.
+#Don't even try using GPU as VRAM, not worth at all the issues you will have (xgboost freeze, etc).
 
 #zram installation
 sudo apt-get install zram-config
@@ -17,7 +17,7 @@ sudo gedit etc/init/zram-config.conf
 
 #----------------------------------------------------
 #Set NRDEVICES to the amount of RAM devices to use. Preferably the amount of CPU cores (NOT THREADS) you have.
-#Set 6442450944 to the amount of RAM you want per device. Preferably keep below 80% of total RAM. 1073741824 = 1GB.
+#Set 6442450944 to the amount of RAM you want per device. Preferably keep the sum of all devices below 80% of total RAM. 1073741824 = 1GB.
 #Add as many echo/mkswap/swapon as there are devices. Or use the loop and edit it properly.
 #-p 5 => swappiness 5
 
