@@ -8,6 +8,8 @@ Easiest solution was using DeepCL (installs on Windows, installs on Linux withou
 
 What's a convolution? Example, I assume you got it how optimizations are required for such thing:
 
+```
+
 for (i in 1:n) {
 
   for (j in 1:n) {
@@ -29,6 +31,8 @@ for (i in 1:n) {
   }
   
 }
+
+```
 
 Confirmed working on:
 * Ubuntu 14.04 flavors
