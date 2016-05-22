@@ -8,6 +8,15 @@
 # * Ubuntu 14.04 flavors
 # * Elementary OS 0.32 (Ubuntu 14.04)
 
+# Compilation problems? Set ~/.bashrc according to the end of this page.
+# Installation prompts when creating .deb packages so you can reinstall QUICKLY...? Answer the following in order:
+# - Documentation: n
+# - Changes: Enter
+# - Install: Enter
+# - Stuff out of place: n
+# - Ignore stuff out of place: y
+# Installation works but using the library/package fails? Use the command provided after checkinstall to uninstall properly!
+
 # Do not try with Python 3.5, it causes errors
 # Do NOT install Anaconda before, it causes compilation issues that are barely solvable
 # Do NOT install anything else before compiling Caffe, it causes errors randomly
@@ -159,3 +168,10 @@ python setup.py install
 spyder
 import caffe
 import xgboost
+
+#by the end your ~/.bashrc MUST look like this:
+export LD_LIBRARY_PATH="/usr/local/lib64/:$LD_LIBRARY_PATH"
+export CLFFT_INCLUDE_DIR="/usr/local/include"
+export PYTHONPATH="/home/laurae-linux/Downloads/caffe/python/:$PYTHONPATH"
+export CAFFE_ROOT="/home/laurae-linux/Downloads/caffe"
+export PATH="/home/laurae-linux/anaconda2/bin:$PATH"
