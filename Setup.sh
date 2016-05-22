@@ -151,6 +151,7 @@ cd $CAFFE_ROOT
 ./data/cifar10/get_cifar10.sh
 ./examples/cifar10/create_cifar10.sh
 ./examples/cifar10/train_quick.sh
+python python/classify.py --print_results examples/images/cat.jpg foo
 
 #install Anaconda 2.7 yourself
 
