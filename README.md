@@ -1,8 +1,12 @@
-# amd-dl: Data Science using AMD GPU Deep Learning: Setup Python + Caffe/XGBoost + OpenCL + 1.7x RAM #
+# amd-ds: Data Science using AMD GPU Deep Learning: Setup Python + Caffe/XGBoost + OpenCL + 1.7x RAM #
 
-Spent time to get a script doing all the needed stuff for Deep Learning on a hybrid AMD GPU: 150 hours or so (spread over 1 year)
+If you are here I guess it is because you wanted to do deep learning using OpenCL and you searched/tried for days/weeks/months/years to have a working setup.
 
-Easiest solution was using DeepCL (installs on Windows, installs on Linux without issues...), but clearly the OpenCL Caffe version is about 50x(?) faster for convolutions, which is what I need.
+I spent time to find all the correct pre-requirements and all the needed stuff for Deep Learning on a hybrid AMD GPU: 150 hours or so (spread over 1 year).
+
+The easiest solution was using DeepCL (installs on Windows, installs on Linux without issues... very nice interface overall), but clearly the OpenCL Caffe version is about 50x(?) faster for convolutions, which is what we usually need overall.
+
+Why not using R? Because if you are here for using the best of your computer, R is a (massive) disaster when it comes to speed/computing. You should prefer Python, but you can install R+XGBoost if needed. Compilation of XGBoost for R is not working for unknown reasons, don't ask me why I tried about 700 automated different configurations to get it (still) not working.
 
 What's a convolution? Example, I assume you got it how optimizations are required for such thing:
 
@@ -35,6 +39,8 @@ for (i in 1:n) {
 Confirmed working on:
 * Ubuntu 14.04 flavors
 * Elementary OS 0.32 (Ubuntu 14.04)
+
+Do not use Ubuntu 16.04 flavors, not working appropriately.
 
 Compilation problems? Set ~/.bashrc according to the end of this page.
 
