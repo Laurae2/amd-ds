@@ -182,3 +182,5 @@ export CLFFT_INCLUDE_DIR="/usr/local/include"
 export PYTHONPATH="/home/laurae-linux/Downloads/caffe/python/:$PYTHONPATH"
 export CAFFE_ROOT="/home/laurae-linux/Downloads/caffe"
 export PATH="/home/laurae-linux/anaconda2/bin:$PATH"
+
+#You are done doing everything? Go ahead for massive RAM tweaks.
