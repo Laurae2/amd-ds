@@ -1,6 +1,4 @@
-# amd-dl #
-
-# AMD GPU Deep Learning: Setup Caffe + OpenCL #
+# amd-dl: Data Science using AMD GPU Deep Learning: Setup Python + Caffe/XGBoost + OpenCL + 1.7x RAM #
 
 Spent time to get a script doing all the needed stuff for Deep Learning on a hybrid AMD GPU: 150 hours or so (spread over 1 year)
 
