@@ -22,6 +22,8 @@
 #   /usr/local/lib/R/site-library/xgboost/libs/xgboost.so: undefined symbol: _ZN7xgboost4data10SparsePage6Writer5AllocEPSt10unique_ptrIS1_St14default_deleteIS1_EE
 # Not happy without the bleeding edge xgboost R? Use Windows because it works perfectly there...
 # If you really need xgboost in Linux+R, use the typical online R package on CRAN
+# DO NOT CLEAN UP ALL THE FOLDERS AFTER, OR YOU WILL KILL REQUIRED DEPENDENCIES. ADJUST THE SCRIPT IF YOU WANT TO PUT THE FILES ELSEWHERE.
+# REMEMBER TO SWITCH YOUR GPU TO AMD (if you use hybrid graphics) IF YOU INTEND TO RUN Caffe ON GPU: YOU WILL RUN ON CPU OTHERWISE!!!
 
 # There are manual steps!!! Check out all the comments every time
 # Run this at the beginning to make sure you are at a stable LTS version:
@@ -84,6 +86,14 @@ cmake --version
 cd $HOME/Downloads
 git clone https://github.com/viennacl/viennacl-dev
 #move /viennacl in /usr/include/viennacl, no need to build in fact
+#if you want to test viennacl (to make sure things are working), you need to build the test files (thanks to installing MTL4/Eigen 3 beforehand)
+#cd viennacl-dev
+#mkdir build
+#cd build
+#cmake .. -DENABLE_MTL4=ON -DENABLE_EIGEN=ON -DEIGEN_INCLUDE_DIR=/usr/include/eigen3 -DENABLE_OPENMP=ON
+#cd tests
+#./bisect-test-opencl
+#................... (all the tests available you want in that folder)
 
 #prepare Caffe
 cd $HOME/Downloads
@@ -101,13 +111,13 @@ for req in $(cat python/requirements.txt); do sudo pip install $req; done
 #line 100: change: /usr/local/lib/python2.7/dist-packages/numpy/core/include/
 #line 122: uncomment: WITH_PYTHON_LAYER := 1
 
-#compile and test
+#compile and test: if make runtest does not fail, you are all good
 make all
 make test
 make runtest
 make pycaffe
 
-#Install missing Anaconda features
+#Install missing Python features
 pip install -r python/requirements.txt
 
 #Install Caffe Python
@@ -116,7 +126,17 @@ make pycaffe
 #fix ~/.bashrc, change accordingly
 export CAFFE_ROOT=/home/laurae-linux/caffe
 
-#install Anaconda 2.7
+#run the first doom test: you must get about 74-76% accuracy by the end of CIFAR-10 (depending on the RNG)
+#there are 5000 iterations - 100 iterations take about 1 minute on a AMD Radeon 8730M 1GB GDDR5
+#this is in line with the official documentation (~15 seconds for a beefed NVIDIA+CuDNN)
+#because it's only 4x slower (in line also with AMD/OpenCL-Caffe CNN benchmarks), might be better because 8730M is a slow GPU
+source ~/.bashrc
+cd $CAFFE_ROOT
+./data/cifar10/get_cifar10.sh
+./examples/cifar10/create_cifar10.sh
+./examples/cifar10/train_quick.sh
+
+#install Anaconda 2.7 yourself
 
 #fix Anaconda 2.7
 sudo chown -R laurae-linux /home/laurae-linux/anaconda2
@@ -133,3 +153,9 @@ cd xgboost
 make
 cd python-package
 python setup.py install
+
+#check if all good in Anaconda: use spyder, go to iPython Console to write the imports 1 by 1
+#you might get boost warning/error messages, ignore them it's normal
+spyder
+import caffe
+import xgboost
