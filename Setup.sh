@@ -123,6 +123,8 @@ for req in $(cat python/requirements.txt); do sudo pip install $req; done
 #line 18: add: VIENNACL_DIR = /usr/include/viennacl
 #line 19: add: OPENCL_INCLUDE_DIRS=/opt/AMDAPPSDK-3.0/include
 #line 37: uncomment: USE_FFT := 1
+#line 63: comment CUDA_DIR := /usr/local/cuda
+#line 70-75: comment CUDA_ARCH
 #line 81: change: BLAS := open
 #line 100: change: /usr/local/lib/python2.7/dist-packages/numpy/core/include/
 #line 122: uncomment: WITH_PYTHON_LAYER := 1
@@ -151,6 +153,17 @@ cd $CAFFE_ROOT
 ./data/cifar10/get_cifar10.sh
 ./examples/cifar10/create_cifar10.sh
 ./examples/cifar10/train_quick.sh
+
+#Install Expresso if needed
+#add $EXPRESSO_ROOT to the .bashrc: export EXPRESSO_ROOT="/home/laurae-linux/Downloads/expresso"
+git clone https://github.com/Laurae2/expresso
+sudo apt-get install python-qt4
+sudo apt-get install pyqt4-dev-tools
+sudo apt-get install libqt4-dev
+sudo apt-get install python-h5py
+sudo pip install pyqtgraph --upgrade
+sudo pip install qtutils --upgrade
+sh run_expresso.sh
 
 #install Anaconda 2.7 yourself
 
